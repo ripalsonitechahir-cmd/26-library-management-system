@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Book {
+  id              Int      @id @default(autoincrement())
+  title           String
+  author          String
+  isbn            String   @unique
+  totalCopies     Int      @map("total_copies")
+  availableCopies Int      @map("available_copies")
+  loans           Loan[]
+
+  @@map("books")
+}
+
+model Member {
+  id       Int      @id @default(autoincrement())
+  name     String
+  email    String   @unique
+  phone    String
+  joinedAt DateTime @default(now()) @map("joined_at")
+  loans    Loan[]
+
+  @@map("members")
+}
+
+model Loan {
+  id         Int       @id @default(autoincrement())
+  bookId     Int       @map("book_id")
+  memberId   Int       @map("member_id")
+  issuedAt   DateTime  @default(now()) @map("issued_at")
+  dueAt      DateTime  @map("due_at")
+  returnedAt DateTime? @map("returned_at")
+  fineAmount Float     @default(0) @map("fine_amount")
+  book       Book      @relation(fields: [bookId], references: [id])
+  member     Member    @relation(fields: [memberId], references: [id])
+
+  @@index([returnedAt, dueAt])
+  @@map("loans")
+}

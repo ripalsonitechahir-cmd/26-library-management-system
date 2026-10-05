@@ -1,0 +1,8 @@
+# Local kind cluster: maps NodePort 30080 to localhost:30080
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+  - role: control-plane
+    extraPortMappings:
+      - containerPort: 30080
+        hostPort: 30080

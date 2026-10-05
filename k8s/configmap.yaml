@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: library-config
+  namespace: library-management-system
+data:
+  PORT: "3000"
+  LOAN_DAYS: "14"
+  FINE_PER_DAY: "1"
+  SEED_DEMO_DATA: "true"
+  API_HOST: "api"
+  API_PORT: "80"

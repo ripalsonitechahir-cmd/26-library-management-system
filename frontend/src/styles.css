@@ -1,0 +1,13 @@
+body {
+  background: #f5f7fa;
+}
+.stat-card .display-6 {
+  font-weight: 600;
+}
+.table-responsive {
+  background: #fff;
+  border-radius: 0.5rem;
+}
+.navbar-brand {
+  font-weight: 600;
+}

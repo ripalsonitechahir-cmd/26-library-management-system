@@ -1,0 +1,11 @@
+# SQLite lives in a single file on this volume (the "database" tier).
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: library-data
+  namespace: library-management-system
+spec:
+  accessModes: ["ReadWriteOnce"]
+  resources:
+    requests:
+      storage: 1Gi
